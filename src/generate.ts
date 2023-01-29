@@ -51,6 +51,7 @@ function startGenerating(password: string, startY: number) {
             } else {
                 fs.writeFileSync("wallets/" + publicKey, bs58.encode(keypair.secretKey))
             }
+            fs.writeFileSync("wallets.txt", publicKey + "\n", {flag: "a"})
             keypairsSaved++
         }
 
