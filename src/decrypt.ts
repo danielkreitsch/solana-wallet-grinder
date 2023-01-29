@@ -18,8 +18,7 @@ let rl = readline.createInterface({
 
 console.log("Enter password to get the private key of a wallet")
 rl.question("Password: ", (password) => {
-    let recursiveReadLine = () =>
-    {
+    let recursiveReadLine = () => {
         rl.question("Public key: ", (publicKey) => {
             if (publicKey.length == 0) {
                 return rl.close()
@@ -27,8 +26,8 @@ rl.question("Password: ", (password) => {
             try {
                 const encrypted = fs.readFileSync("wallets/" + publicKey, "hex")
                 try {
-                    const secretKey = decrypt(encrypted, password)
-                    console.log(" Private key: " + secretKey)
+                    const secret = decrypt(encrypted, password)
+                    console.log(" Result: " + secret)
                 } catch (e) {
                     console.error(" Wrong password")
                 }
